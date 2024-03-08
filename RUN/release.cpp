@@ -1,11 +1,2 @@
 #include "../DIM_LANGUAGE/LIBS/standart/standart.h"
-int main() { 
-	std::setlocale(LC_ALL, "Ru"); 
-	Dynamic a = 1;
-	//dim::println(a == 5);
-	while (a < 11) {
-		if (a % 2 == 0) { dim::println("Четное: ", a, "\n"); }
-		else { dim::println("Нечетное: ", a, "\n"); }
-		a = a + 1;
-	}
-}
+int main() { std::setlocale(LC_ALL, "Ru"); Dynamic a = 1; while ( a < 11 ) { if ( a % 2 == 0 ) { dim::println ( "Четное: " , a , "\n" ); } else { dim::println ( "Нечетное: " , a, "\n"); } a = a + 1; }}

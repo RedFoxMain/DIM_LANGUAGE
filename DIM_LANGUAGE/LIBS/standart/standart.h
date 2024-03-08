@@ -48,10 +48,10 @@ public:
 
 	friend bool operator<(const Dynamic& lhs, const Dynamic& rhs);	// Перегрузка опрератора меньше
 	friend bool operator==(const Dynamic& lhs, const Dynamic& rhs);  // Перегрузка опрератора эквивалент
-	/*friend bool operator>(const Dynamic& lhs, const Dynamic& rhs);  // Перегрузка опрератора больше
+	friend bool operator>(const Dynamic& lhs, const Dynamic& rhs);  // Перегрузка опрератора больше
 	friend bool operator!=(const Dynamic& lhs, const Dynamic& rhs);  // Перегрузка опрератора не равно
 	friend bool operator<=(const Dynamic& lhs, const Dynamic& rhs);  // Перегрузка опрератора меньше либо равно
-	friend bool operator>=(const Dynamic& lhs, const Dynamic& rhs);  // Перегрузка опрератора больше либо равно*/
+	friend bool operator>=(const Dynamic& lhs, const Dynamic& rhs);  // Перегрузка опрератора больше либо равно
 	friend std::ostream& operator<<(std::ostream& os, const Dynamic& dynamic); // Оператор вывода
 
 	std::string GetType() { return type.at(this->var.type_); }
@@ -104,15 +104,45 @@ Dynamic Mod(T& lhs, U& rhs) {
 	return Dynamic();
 }
 
+// Функция для нахождения меньшего значения
 template<typename T, typename U>
 bool Less(const T& lhs, const U& rhs) {
 	if constexpr (std::is_arithmetic_v<T> && std::is_arithmetic_v<U>) { return lhs < rhs; }
 	return false;
 }
 
+// Функция для нахождения большего значения
+template<typename T, typename U>
+bool Greater(const T& lhs, const U& rhs) {
+	if constexpr (std::is_arithmetic_v<T> && std::is_arithmetic_v<U>) { return lhs > rhs; }
+	return false;
+}
+
+// Функция для нахождения равного или меньшего значения
+template<typename T, typename U>
+bool LessEqual(const T& lhs, const U& rhs) {
+	if constexpr (std::is_arithmetic_v<T> && std::is_arithmetic_v<U>) { return lhs <= rhs; }
+	return false;
+}
+
+// Функция для нахождения большего или равного значения
+template<typename T, typename U>
+bool GreaterEqual(const T& lhs, const U& rhs) {
+	if constexpr (std::is_arithmetic_v<T> && std::is_arithmetic_v<U>) { return lhs >= rhs; }
+	return false;
+}
+
+// Функция для нахождения равного значения 
 template<typename T, typename U>
 bool Equal(const T& lhs, const U& rhs) {
 	if constexpr (std::is_arithmetic_v<T> && std::is_arithmetic_v<U>) { return lhs == rhs; }
+	return false;
+}
+
+// Функция для нахождения не равного значения 
+template<typename T, typename U>
+bool NotEqual(const T& lhs, const U& rhs) {
+	if constexpr (std::is_arithmetic_v<T> && std::is_arithmetic_v<U>) { return lhs != rhs; }
 	return false;
 }
 
@@ -146,9 +176,29 @@ bool operator<(const Dynamic& lhs, const Dynamic& rhs) {
 		return Less(a, b);
 	}, lhs.var.value_, rhs.var.value_);
 }
+bool operator>(const Dynamic& lhs, const Dynamic& rhs) {
+	return std::visit([](const auto& a, const auto& b) {
+		return Greater(a, b);
+		}, lhs.var.value_, rhs.var.value_);
+}
 bool operator==(const Dynamic& lhs, const Dynamic& rhs) {
 	return std::visit([](const auto& a, const auto& b) {
 		return Equal(a, b);
+	}, lhs.var.value_, rhs.var.value_);
+}
+bool operator!=(const Dynamic& lhs, const Dynamic& rhs) {
+	return std::visit([](const auto& a, const auto& b) {
+		return NotEqual(a, b);
+		}, lhs.var.value_, rhs.var.value_);
+}
+bool operator<=(const Dynamic& lhs, const Dynamic& rhs) {
+	return std::visit([](const auto& a, const auto& b) {
+		return LessEqual(a, b);
+	}, lhs.var.value_, rhs.var.value_);
+}
+bool operator>=(const Dynamic& lhs, const Dynamic& rhs) {
+	return std::visit([](const auto& a, const auto& b) {
+		return GreaterEqual(a, b);
 	}, lhs.var.value_, rhs.var.value_);
 }
 
