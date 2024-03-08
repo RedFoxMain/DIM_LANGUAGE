@@ -1,3 +1,3 @@
 #pragma once
 #include <string>
-const std::string path_to_main_folder = "C:\\Users\\savos\\source\\repos\\DIM_LANGUAGE";
+const std::string path_to_main_folder = ""; // путь до папки интерпретатора
