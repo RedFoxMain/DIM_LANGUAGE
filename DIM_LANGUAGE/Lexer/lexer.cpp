@@ -24,7 +24,7 @@ Token Lexer::GetString(int first_quote_position, int second_quote_position) {
 	CODE_STRING_LITERALS.try_emplace(temp_string, code);
 
 	// Если выводим
-	Token exist_token(Type::TYPE_STRING, code, temp_string, position);
+	Token exist_token(Type::TYPE_STRING, CODE_STRING_LITERALS[temp_string], temp_string, position);
 	return exist_token;
 }
 
