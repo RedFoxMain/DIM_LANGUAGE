@@ -1,6 +1,3 @@
-var a = 1
-while(a < 11) {
-	if(a % 2 == 0){ println("Четное ", a) }
-	else{ println("Нечетное ", a) }
-	a = a+1
+for(var a in range(1, 21, 2)){
+	println(a+1, " ")
 }
