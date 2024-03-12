@@ -1,1 +1,6 @@
-println("Hello, World!")
+var a = 1
+while(a < 11) {
+	if(a % 2 == 0){ println("Четное ", a) }
+	else{ println("Нечетное ", a) }
+	a = a+1
+}

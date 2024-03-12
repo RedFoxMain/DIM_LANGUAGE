@@ -48,7 +48,7 @@ void Parser::TarnslateToCpp() {
 
 			std::string next_value = hiddenData_[next_index].value;  // следущее значение
 			// ; для цифр
-			if ((current_type == Type::TYPE_INT || current_type == Type::TYPE_FLOAT) && !InVector({ ")", "or", "and", "==", ",", "}" }, next_value)) { cpp_code += ";"; }
+			if ((current_type == Type::TYPE_INT || current_type == Type::TYPE_FLOAT) && !InVector({ ")", "or", "and", "==", "," }, next_value)) { cpp_code += ";"; }
 
 			// ; для )
 			if (current_type == Type::TYPE_RRB && !InVector({ "{", "or", "and", "*", "/", "+", "-", "%", ")"}, next_value)) { cpp_code += ";"; }
@@ -65,7 +65,6 @@ void Parser::TarnslateToCpp() {
 		}
 	}
 	if (cpp_code[cpp_code.size()-1] == Barackets_Tokens::RRB_TOKEN || cpp_code[cpp_code.size() - 1] == Barackets_Tokens::RFB_TOKEN) { cpp_code += ";"; }
-	else { cpp_code += ";"; }
 	cpp_code += "}";
 	MakeFile(cpp_code);
 }

@@ -1,2 +1,2 @@
 #include "../DIM_LANGUAGE/LIBS/standart/standart.h"
-int main() { std::setlocale(LC_ALL, "Ru"); dim::println ( "Hello, World!" );}
+int main() { std::setlocale(LC_ALL, "Ru"); Dynamic a = 1; while ( a < 11 ) { if ( a % 2 == 0 ) { dim::println ( "Четное " , a ); } else { dim::println ( "Нечетное " , a ); } a = a + 1; };}
