@@ -4,9 +4,36 @@
 #include <iomanip>
 #include <variant>
 #include <string>
+#include <vector>
 #include <map>
 
 namespace dim {
+	class Range {
+	private:
+		class Iterator {
+		public:
+			Iterator(int start, int end, int step) : start_(start), end_(end), step_(step) {}
+			bool operator!=(const Iterator& other) { return this->start_ != other.start_; }
+			int operator*() const { return this->start_; }
+			Iterator& operator++() {
+				start_ += step_;
+				if ((this->step_ > 0 && this->start_ >= this->end_) || (this->step_ < 0 && this->start_ <= this->end_)) { this->start_ = this->end_; }
+				return *this;
+			}
+		private:
+			int start_ = 0, end_, step_ = 1;
+		};
+		
+	public:
+		Range(int end): end_(end) {}
+		Range(int start, int end) : start_(start), end_(end) {}
+		Range(int start, int end, int step) : start_(start), end_(end), step_(step) { if (step < 1) { throw std::runtime_error("Шаг не должен быть меньше 1"); } }
+
+		Iterator begin() const { return Iterator(this->start_, this->end_, this->step_); }
+		Iterator end() const { return Iterator(this->end_, this->start_, this->step_); }
+	private:
+		int start_ = 0, end_, step_ = 1;
+	};
 	template<typename T>
 	void println(const T& value) {
 		std::cout << std::boolalpha << value;

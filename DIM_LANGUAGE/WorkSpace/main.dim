@@ -1,6 +1,1 @@
-var a = 1
-while (a < 11){
-	if (a%2 == 0){ println("mod by 2: ", a, "\n") }
-	else{ println("Mod by 3: ", a, "\n") }
-	a = a + 1
-}
+println("Hello, World!")

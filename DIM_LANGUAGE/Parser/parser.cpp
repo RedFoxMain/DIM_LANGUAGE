@@ -48,24 +48,24 @@ void Parser::TarnslateToCpp() {
 
 			std::string next_value = hiddenData_[next_index].value;  // следущее значение
 			// ; для цифр
-			if ((current_type == Type::TYPE_INT || current_type == Type::TYPE_FLOAT) && !InVector({ ")", "or", "and", "==" }, next_value)) { cpp_code += ";"; }
+			if ((current_type == Type::TYPE_INT || current_type == Type::TYPE_FLOAT) && !InVector({ ")", "or", "and", "==", ",", "}" }, next_value)) { cpp_code += ";"; }
 
 			// ; для )
-			if (current_type == Type::TYPE_RRB && !InVector({ "{", "or", "and", "*", "/", "+", "-", "%"}, next_value)) { cpp_code += ";"; }
+			if (current_type == Type::TYPE_RRB && !InVector({ "{", "or", "and", "*", "/", "+", "-", "%", ")"}, next_value)) { cpp_code += ";"; }
 
 			// ; для строк
 			else if (current_type == Type::TYPE_STRING && !InVector({ ")", "or", "and", "," }, next_value)) { cpp_code += ";"; }
 
 			// ; для перменных
-			else  if (current_type == Type::TYPE_VARIBLE && !InVector({ "=", ">", "<", ">=", "<=", "!=", "--", "++", "%", "+", "-", "/", "*", ")", "and", "or", "==", "," }, next_value)) { cpp_code += ";"; }
+			else  if (current_type == Type::TYPE_VARIBLE && !InVector({ "=", ">", "<", ">=", "<=", "!=", "--", "++", "%", "+", "-", "/", "*", ")", "and", "or", "==", ",", "in" }, next_value)) { cpp_code += ";"; }
 
 			// ; для инкремента и декремента
 			else if ((current_type == Type::TYPE_INCREMENT || current_type == Type::TYPE_DECREMENT) && !InVector({ ";" }, next_value) && VARIBLES_CODE_.count(next_value) < 0) { cpp_code += ";"; }
 			cpp_code += " ";
 		}
 	}
-	if (cpp_code[cpp_code.size()-1] == Barackets_Tokens::RRB_TOKEN) { cpp_code += ";"; }
-
+	if (cpp_code[cpp_code.size()-1] == Barackets_Tokens::RRB_TOKEN || cpp_code[cpp_code.size() - 1] == Barackets_Tokens::RFB_TOKEN) { cpp_code += ";"; }
+	else { cpp_code += ";"; }
 	cpp_code += "}";
 	MakeFile(cpp_code);
 }

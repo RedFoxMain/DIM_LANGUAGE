@@ -40,7 +40,7 @@ public:
 
 private:
 	// Зарегистрированные команды
-	std::vector<std::string> REGISTRY_COMMANDS_ = { "println", "in", "len", "while", "for", "if", "else", "len", "or", "and", "var" };
+	std::vector<std::string> REGISTRY_COMMANDS_ = { "println", "in", "len", "while", "for", "if", "else", "len", "or", "and", "var", "range", "array", "append", "size" };
 	// Таблица токенов
 	Char_And_String_Dictionary TOKEN_TABLE_ = {
 		{Math_Operation_Tokens::ADD_TOKEN, Type::TYPE_ADD},						// +
@@ -59,12 +59,13 @@ private:
 		{Separator_Tokens::COMMENT_TOKEN, Type::TYPE_COMMENT},					// ~
 		{Logic_Operation_Tokens::EQUAL_TOKEN, Type::TYPE_EQUAL},				// =
 		{Separator_Tokens::NEXT_LINE, Type::TYPE_NL},
-		{Separator_Tokens::COMMA_TOKEN, Type::TYPE_COMMA}
+		{Separator_Tokens::COMMA_TOKEN, Type::TYPE_COMMA},
 	};
 	String_Dictionary WordsCode_ = {
 		{"println", "W1"}, {"readln", "W2"}, {"if", "W3"},
 		{"else", "W4"}, {"while", "W5"}, {"for", "W6"},
-		{"len", "W7"}, {"var", "W8"}
+		{"len", "W7"}, {"var", "W8"}, {"in", "W9"}, 
+		{"range", "W10"}, {"array", "W11"}
 	};
 	Char_Dictionary SeparatorCode_ = {
 		{'{', "S1"}, {'}', "S2"}, {'(', "S3"},
