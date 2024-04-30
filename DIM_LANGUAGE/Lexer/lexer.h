@@ -1,4 +1,6 @@
-#pragma once
+#ifndef LEXER_H
+#define LEXER_H
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -25,8 +27,7 @@ struct Token {
 
 class Lexer {
 public:
-	ErrorHandler error_handler;
-	friend class Parser;
+	//friend class Parser;
 	Lexer(const std::string& original_text) : text_(original_text) { Advance(); } // Конструктор
 	String_Dictionary CODE_VARIBLES; // Сигнатуры переменных в DIM коде
 	String_Dictionary CODE_STRING_LITERALS; // Сигнатуры строк в DIM коде
@@ -41,6 +42,7 @@ public:
 private:
 	// Зарегистрированные команды
 	std::vector<std::string> REGISTRY_COMMANDS_ = { "println", "in", "len", "while", "for", "if", "else", "len", "or", "and", "var", "range", "array", "append", "size" };
+	
 	// Таблица токенов
 	Char_And_String_Dictionary TOKEN_TABLE_ = {
 		{Math_Operation_Tokens::ADD_TOKEN, Type::TYPE_ADD},						// +
@@ -90,3 +92,4 @@ private:
 	int position_ = -1; // Позиция элемента
 	unsigned char current_char_ = '\0'; // Текущий символ
 };
+#endif

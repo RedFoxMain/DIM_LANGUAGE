@@ -46,6 +46,7 @@ enum Math_Operation_Tokens {
 	DIVIDE_TOKEN = 47,
 	PERCENT_TOKEN = 37
 };
+
 // Логические операции
 enum Logic_Operation_Tokens {
 	GREATER_TOKEN = 62,
