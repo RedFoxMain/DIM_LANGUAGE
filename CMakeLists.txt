@@ -14,8 +14,5 @@ endif()
 
 project ("DIM_LANGUAGE")
 
-project("RUN_EXECUTABLE")
-add_executable(RUN_EXECUTABLE "RUN/release.cpp")
-
 # Include sub-projects.
 add_subdirectory ("DIM_LANGUAGE")

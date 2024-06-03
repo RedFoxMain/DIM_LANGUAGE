@@ -41,7 +41,7 @@ public:
 
 private:
 	// Зарегистрированные команды
-	std::vector<std::string> REGISTRY_COMMANDS_ = { "println", "in", "len", "while", "for", "if", "else", "len", "or", "and", "var", "range", "array", "append", "size" };
+	std::vector<std::string> REGISTRY_COMMANDS_ = { "println", "readln", "in", "len", "while", "for", "if", "else", "len", "or", "and", "var", "range", "array", "append", "size" };
 	
 	// Таблица токенов
 	Char_And_String_Dictionary TOKEN_TABLE_ = {

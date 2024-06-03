@@ -18,19 +18,20 @@ public:
 	void MakeFile(const std::string& data); // Создать .cpp файл 
 
 	template<typename K, typename V>
-	static std::unordered_map<K, V> reverse_map(const std::unordered_map<K, V>& map);
+	static std::unordered_map<K, V> ReverseMap(const std::unordered_map<K, V>& map);
 
 private:
 	std::vector<Token> hiddenData_; // Вектор закодированных ключевых слов DIM
 	Dictionary STRING_LITERALS_CODE_;
 	Dictionary VARIBLES_CODE_;
 	Dictionary DIGITS_CODE_;
+
 	// (ОПН) Обратная Польская Нотация
 	Dictionary OPN = {
-	{"W1", "dim::println"}, {"W2", "readln"}, {"W3", "if"},
+	{"W1", "dim::println"}, {"W2", "dim::readline<dim::Dynamic>"}, {"W3", "if"},
 	{"W4", "else"},   {"W5", "while"},   {"W6", "for"},
-	{"W7", "size()"}, {"W8", "Dynamic"},  {"W9", ":"},
-	{"W10", "dim::Range"}, {"W11", "std::vector<Dynamic>"},
+	{"W7", "size()"}, {"W8", "dim::Dynamic"},  {"W9", ":"},
+	{"W10", "dim::Range"}, {"W11", "std::vector<dim::Dynamic>"},
 	{"S1", "{"}, {"S2", "}"}, {"S3", "("}, {"S4", ")"}, {"S5", "\n"}, {"S6", "\t"},
 	{"S7", "["}, {"S8", "]"}, {"S9", "//"}, {"S10", ","},
 	{"O1", "+"}, {"O2", "-"}, {"O3", "/"}, {"O4", "*"},
