@@ -27,7 +27,6 @@ struct Token {
 
 class Lexer {
 public:
-	//friend class Parser;
 	Lexer(const std::string& original_text) : text_(original_text) { Advance(); } // Конструктор
 	String_Dictionary CODE_VARIBLES; // Сигнатуры переменных в DIM коде
 	String_Dictionary CODE_STRING_LITERALS; // Сигнатуры строк в DIM коде
@@ -36,7 +35,7 @@ public:
 	Token AddBinaryOperator(const Type& type, const std::string& code, const std::string& value, const int& position); // Добавить логический оператор к токенам
 	Token GetString(int first_quote_position, int second_quote_position); // Получить строку
 	Token GetCommand(); // Получить команду
-	Token GetDigit(); // Получить цыфру
+	Token GetDigit(); // Получить цифру
 	std::vector<Token> Lex(); // Разобрать текст на токены
 
 private:

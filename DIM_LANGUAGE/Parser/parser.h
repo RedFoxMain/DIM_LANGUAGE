@@ -4,7 +4,6 @@
 #include "../Lexer/lexer.h"
 #include "../Configuration/config.h"
 
-
 using Dictionary = std::unordered_map<std::string, std::string>;
 
 class Parser {

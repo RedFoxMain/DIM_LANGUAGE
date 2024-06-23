@@ -25,13 +25,13 @@ bool Parser::InVector(const std::vector<std::string>& list, const std::string& w
 
 void Parser::MakeFile(const std::string& data) {
 	extern const std::string path_to_main_folder;
-	std::ofstream out(path_to_main_folder + "\\RUN\\release.h");
+	std::ofstream out(path_to_main_folder + "\\RUN\\release.cpp");
 	if (out.is_open()) { out << data; }
 	out.close();
 }
 
 void Parser::TarnslateToCpp() {
-	std::string cpp_code = "#include \"../DIM_LANGUAGE/LIBS/standart/standart.h\"\nvoid Run() { std::setlocale(LC_ALL, \"Ru\"); ";
+	std::string cpp_code = "#include \"../DIM_LANGUAGE/LIBS/standart/standart.h\"\nvoid main() { std::setlocale(LC_ALL, \"Ru\"); ";
 	size_t max_size = hiddenData_.size();
 	for (size_t index = 0; index < max_size; ++index) {
 		Type current_type = hiddenData_[index].type;  // текущий тип токена

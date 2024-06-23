@@ -1,5 +1,1 @@
-var f = 1
-for(var i in range(1, 6)){
-	f = f * i
-}
-println(f)
+println("Hello, World!")

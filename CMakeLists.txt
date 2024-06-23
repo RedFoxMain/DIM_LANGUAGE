@@ -16,3 +16,4 @@ project ("DIM_LANGUAGE")
 
 # Include sub-projects.
 add_subdirectory ("DIM_LANGUAGE")
+add_subdirectory ("RUN")
